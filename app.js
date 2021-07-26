@@ -32,7 +32,9 @@ app.use(passport.session());
 
 const localDBAddress = "mongodb://localhost:27017/userDB";
 
-const atlasDBAddress = `mongodb+srv://${process.env.ATLAS_DB_USER}:${process.env.ATLAS_DB_PASSWORD}@cluster0.m2h9a.mongodb.net/todolistDB?retryWrites=true&w=majority`;
+
+
+const atlasDBAddress = `mongodb+srv://${process.env.ATLAS_DB_USER}:${process.env.ATLAS_DB_PASSWORD}@cluster0.m2h9a.mongodb.net/secrets?retryWrites=true&w=majority`;
 
 mongoose.connect(atlasDBAddress, { useCreateIndex : true, useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false })
 //mongoose.connect(localDBAddress, { useCreateIndex : true, useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false })
@@ -259,4 +261,4 @@ app.post("/login",
     //   .catch(err => console.log("There appeared an error during login attempt:\n" + err));
 });
 
-app.listen(3000, () => console.log("Server started on port 3000"));
+app.listen(process.env.PORT || 3000, () => console.log("Server started on port 3000"));
